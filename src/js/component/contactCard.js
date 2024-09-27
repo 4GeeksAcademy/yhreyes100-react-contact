@@ -1,5 +1,6 @@
 import React, { useEffect,useContext, useState } from "react";
 import { Context } from "../../js/store/appContext";
+import validator from "validator";
 export  const ContactCard = (props) => { 
 	const {store,actions}=useContext(Context);
 	const [showDeleteModal,setShowDeleteModal]=useState(false);
@@ -11,22 +12,28 @@ export  const ContactCard = (props) => {
 	useEffect(()=>{
 		if(store.deleteContact!=null){
 			actions.deleteContact(store.deleteContact);
-			console.log(edit);
 			const newContact = [
 				...store.contacts.slice(0, parseInt(store.deleteContact)), 
 				...store.contacts.slice( parseInt(store.deleteContact) + 1) 
 			];
 			actions.setContacts(newContact);
 			actions.setDeleteContact(null);
+			
 		}
 		if(store.editContact!=null){
-			actions.editContact(store.editContact);
+
+			if(validator.isEmail(store.editContact.email)){
+				actions.editContact(store.editContact);
 			const newContacts = [
 				...store.contacts.slice(0, parseInt(store.editIndex)), 
 				store.editContact,
 				...store.contacts.slice( parseInt(store.editIndex) + 1) 
 			];
 			actions.setContacts(newContacts);
+			}
+			else{
+				
+			}
 			actions.setEditContact(null);
 			actions.setEditIndex(null);
 		}
@@ -76,7 +83,7 @@ export  const ContactCard = (props) => {
                                 <p>If you delete this thing the entire universe will go down?</p>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" onClick={()=>handleEdit}>
+                                <button type="button" className="btn btn-primary" onClick={()=>{actions.setDeleteContact(props.index);setShowDeleteModal(false);}}>
                                    Yes baby!
                                 </button>
                                 <button type="button" className="btn btn-secondary"  onClick={() => setShowDeleteModal(false)} >
@@ -92,7 +99,7 @@ export  const ContactCard = (props) => {
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title">Edit contact information</h5>
+                                <h5 className="modal-title">Edit {name} contact information</h5>
                                 <button
                                     type="button"
                                     className="close"
@@ -110,11 +117,11 @@ export  const ContactCard = (props) => {
 								</div>
 								<div className="form-group">
 									<label>Email</label>
-									<input type="email" className="form-control" placeholder="Enter email" value={email} onChange={(e) =>setEmail(e.target.value)} />
+									<input  type="email" className="form-control" placeholder="Enter email" value={email} onChange={(e) =>setEmail(e.target.value)} required/>
 								</div>
 								<div className="form-group">
 									<label>Phone</label>
-									<input type="phone" className="form-control" placeholder="Enter phone" value={phone}  onChange={(e) => setPhone(e.target.value)}/>
+									<input type="phone" className="form-control" placeholder="Enter phone" value={phone}  onChange={(e) => setPhone(e.target.value)} required/>
 								</div>
 								<div className="form-group">
 									<label>Address</label>

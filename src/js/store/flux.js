@@ -52,6 +52,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setContacts(value){
 				setStore({contacts:value});
 			},
+			createUser: async()=>{
+				try {
+                    const store = getStore();
+
+                    const response = await fetch(`https://playground.4geeks.com/contact/agendas/yasin`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({})
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                    } else {
+                        console.error("Failed to create agenda:", response.statusText);
+                    }
+                } catch (error) {
+                    console.error("Error creating agenda:", error);
+                }
+			},
 			AddContact: async ()=>{
 				 await fetch('https://playground.4geeks.com/contact/agendas/yasin/contacts', {
 						method: "POST",
@@ -64,12 +83,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						  return resp.json();
 					  })
 					  .then(data => {
-						console.log(data)
+						window.location = '/';
 						getActions().setName("");
 						getActions().setPhone("");
 						getActions().setEmail("");
 						getActions().setAddress("");
-						window.location = '/';
 					  })
 					  .catch(error => {
 						  console.log(error);

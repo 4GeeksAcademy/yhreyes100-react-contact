@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 export const Contacts = () => {
 	const { store, actions } = useContext(Context);
 	useEffect(()=>{
+		actions.createUser();
 		actions.getAllContacts();
 	},[])
 	return (
