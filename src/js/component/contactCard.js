@@ -43,24 +43,41 @@ export  const ContactCard = (props) => {
 		<>
 		<li className="list-group-item">
 		<div className="row w-100">
-			<div className="col-12 col-sm-6 col-md-3 px-0">
-				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQ3G-YJjoF9SdMYLSg5ZZdtgrt2Xrnax17aSfBZtRVfV1YykSMYw3fRJaTQ&s" alt={props.contact.name} className="rounded-circle mx-auto d-block img-fluid" />
-			</div>
-			<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
-				<div className=" float-right">
-					<button className="btn" onClick={()=>setShowEditModal(true)}><i className="fas fa-pencil-alt mr-3"></i></button>
-					<button id={props.index} className="btn" onClick={() => setShowDeleteModal(true)}><i className="fas fa-trash-alt"></i></button>
+			<div className="container-fluid">
+				<div className="row">
+					<div className="col-4">
+						
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQ3G-YJjoF9SdMYLSg5ZZdtgrt2Xrnax17aSfBZtRVfV1YykSMYw3fRJaTQ&s" alt={props.contact.name} className="rounded-circle mx-auto d-block img-fluid" />
+						
+					</div>
+					<div className="col-6 text-center">	
+						<div className="row">
+						<label className="name lead text">{props.contact.name}</label>
+						</div>
+						<div className="row text">
+							<div className="d-inline">	
+								<i className="fas fa-map-marker-alt text-muted mr-3"></i>
+								<span className="text-muted">{props.contact.address}</span>
+							</div>
+						</div>
+						<div className="row text">
+							<div className="d-inline">	
+								<span className="fa fa-phone fa-fw text-muted mr-3" data-toggle="tooltip" title="" data-original-title="(870) 288-4149"></span>
+								<span className="text-muted small">{props.contact.phone}</span>
+							</div>
+						</div>
+						<div className="row text">
+							<div className="d-inline">	
+								<span className="fa fa-envelope fa-fw text-muted mr-3" data-toggle="tooltip" data-original-title="" title=""></span>
+								<span className="text-muted small text-truncate">{props.contact.email}</span>		
+							</div>	
+						</div>				
+					</div>
+					<div className="col-2 text-end">
+							<button className="btn" onClick={()=>setShowEditModal(true)}><i className="fas fa-pencil-alt mr-3"></i></button>
+							<button id={props.index} className="btn" onClick={() => setShowDeleteModal(true)}><i className="fas fa-trash-alt"></i></button>
+					</div>
 				</div>
-				<label className="name lead">{props.contact.name}</label>
-				<br /> 
-				<i className="fas fa-map-marker-alt text-muted mr-3"></i>
-				<span className="text-muted">{props.contact.address}</span>
-				<br />
-				<span className="fa fa-phone fa-fw text-muted mr-3" data-toggle="tooltip" title="" data-original-title="(870) 288-4149"></span>
-				<span className="text-muted small">{props.contact.phone}</span>
-				<br />
-				<span className="fa fa-envelope fa-fw text-muted mr-3" data-toggle="tooltip" data-original-title="" title=""></span>
-				<span className="text-muted small text-truncate">{props.contact.email}</span>
 			</div>
 		</div>
 		</li>

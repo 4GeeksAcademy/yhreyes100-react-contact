@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import validator from "validator";
 export const AddEditContacts = () => {
 	const { store, actions } = useContext(Context);
-
 	return (
 		<div className="container">
 		<div>
