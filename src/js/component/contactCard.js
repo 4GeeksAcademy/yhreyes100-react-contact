@@ -45,12 +45,12 @@ export  const ContactCard = (props) => {
 		<div className="row w-100">
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-4">
+					<div className="col-lg-4 col-sm-12">
 						
 							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaQ3G-YJjoF9SdMYLSg5ZZdtgrt2Xrnax17aSfBZtRVfV1YykSMYw3fRJaTQ&s" alt={props.contact.name} className="rounded-circle mx-auto d-block img-fluid" />
 						
 					</div>
-					<div className="col-6 text-center">	
+					<div className="col-lg-6 col-sm-12 text-center">	
 						<div className="row">
 						<label className="name lead text">{props.contact.name}</label>
 						</div>
@@ -129,19 +129,19 @@ export  const ContactCard = (props) => {
 							<form>
                             <div className="modal-body">
 							<div className="form-group">
-								<label>Full Name</label>
+								<label className="text">Full Name</label>
 								<input type="text" className="form-control" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)}/>
 								</div>
 								<div className="form-group">
-									<label>Email</label>
-									<input  type="email" className="form-control" placeholder="Enter email" value={email} onChange={(e) =>setEmail(e.target.value)} required/>
+									<label className="text">Email</label>
+									<input  type="email" name="email" className="form-control" placeholder="Enter email" value={email} onChange={(e) =>setEmail(e.target.value)} required/>
 								</div>
 								<div className="form-group">
-									<label>Phone</label>
+									<label className="text">Phone</label>
 									<input type="phone" className="form-control" placeholder="Enter phone" value={phone}  onChange={(e) => setPhone(e.target.value)} required/>
 								</div>
 								<div className="form-group">
-									<label>Address</label>
+									<label className="text">Address</label>
 									<input type="text" className="form-control" placeholder="Enter address" value={address} onChange={(e) =>setAddress(e.target.value)}/>
 								</div>
                             </div>
