@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-
+import validator from "validator";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			name:null,
-			phone:null,
-			email:null,
-			address:null,
+			name:"",
+			phone:"",
+			email:"",
+			address:"",
 			deleteContact:null,
 			editContact:null,
 			editIndex:null,
@@ -72,6 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 }
 			},
 			AddContact: async ()=>{
+				console.log("entroooooooooooooooooooo")
 				 await fetch('https://playground.4geeks.com/contact/agendas/yasin/contacts', {
 						method: "POST",
 						headers: {
